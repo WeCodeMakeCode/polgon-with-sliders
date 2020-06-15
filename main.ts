@@ -2,10 +2,10 @@ controller.right.onEvent(ControllerButtonEvent.Repeated, function () {
     right_or_left(1)
 })
 controller.down.onEvent(ControllerButtonEvent.Repeated, function () {
-    up_and_down_radius(-1)
+    radius_up_and_down(-1)
 })
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
-    up_and_down_radius(-1)
+    radius_up_and_down(-1)
 })
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     active_slider.selected = false
@@ -25,10 +25,6 @@ controller.left.onEvent(ControllerButtonEvent.Released, function () {
         time = game.runtime()
     }
 })
-function up_and_down_radius (amount: number) {
-    slider_radius.value = Math.min(Math.max(myPolygon.radius + amount, 10), 50)
-    myPolygon.radius = slider_radius.value
-}
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (active_slider.thumb_text.isEmpty()) {
         active_slider.thumb_text = active_slider.data
@@ -40,8 +36,8 @@ function right_or_left (inc: number) {
     if (active_slider == slider_sides) {
         active_slider.value += inc
         slider_starting_angle.value = 0
-        myPolygon.sides += inc
-        myPolygon.sides = Math.min(Math.max(myPolygon.sides, 3), 30)
+        myPolygon.sides = Math.min(Math.max(myPolygon.sides + inc, 3), 30)
+        myPolygon.sprite.say(myPolygon.type, 500)
     } else if (active_slider == slider_color) {
         active_slider.value += inc
         myPolygon.color += inc
@@ -49,18 +45,20 @@ function right_or_left (inc: number) {
     } else {
         myPolygon.angle += inc * speed
         active_slider.value = myPolygon.angle
-        console.logValue("angle", myPolygon.angle)
-        console.logValue("slider", active_slider.value)
     }
 }
 controller.up.onEvent(ControllerButtonEvent.Repeated, function () {
-    up_and_down_radius(1)
+    radius_up_and_down(1)
 })
 controller.right.onEvent(ControllerButtonEvent.Released, function () {
     right_or_left(1)
 })
+function radius_up_and_down (amount: number) {
+    slider_radius.value = Math.min(Math.max(myPolygon.radius + amount, 10), 50)
+    myPolygon.radius = slider_radius.value
+}
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
-    up_and_down_radius(1)
+    radius_up_and_down(1)
 })
 controller.left.onEvent(ControllerButtonEvent.Repeated, function () {
     right_or_left(-1)
