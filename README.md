@@ -1,6 +1,6 @@
 # polgon-with-sliders ![Build status badge](https://github.com/wecodemakecode/polgon-with-sliders/workflows/MakeCode/badge.svg)
 
-
+![polygon and sliders screen](.\polygon_and_slider_screen.png)
 
 ## Use this extension
 
