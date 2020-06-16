@@ -19,11 +19,7 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     active_slider.selected = true
 })
 controller.left.onEvent(ControllerButtonEvent.Released, function () {
-    let time_inc = 0
-    if (game.runtime() - time > time_inc) {
-        right_or_left(-1)
-        time = game.runtime()
-    }
+    right_or_left(-1)
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (active_slider.thumb_text.isEmpty()) {
@@ -74,7 +70,6 @@ function position_horizontal_sliders (width: number) {
 }
 let this_left = 0
 let slider_between = 0
-let time = 0
 let myPolygon: Polygon = null
 let active_slider: Slider = null
 let slider_radius: Slider = null
